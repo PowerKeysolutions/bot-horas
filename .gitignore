@@ -1,0 +1,19 @@
+# Credenciales sensibles - NUNCA subir a GitHub
+credenciales.json
+*.json
+
+# Ejecutable ngrok (32MB, se descarga aparte)
+ngrok.exe
+*.exe
+
+# Archivos de Python
+__pycache__/
+*.pyc
+*.pyo
+.env
+venv/
+
+# Archivos del sistema
+.DS_Store
+Thumbs.db
+*.png

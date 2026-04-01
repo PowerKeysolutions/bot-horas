@@ -1,0 +1,40 @@
+from flask import Flask, render_template, request
+import gspread
+from oauth2client.service_account import ServiceAccountCredentials
+
+app = Flask(__name__)
+
+# 1. Configuración de Google Sheets
+# Define los permisos necesarios para leer y escribir
+scope = ["https://spreadsheets.google.com/feeds", "https://www.googleapis.com/auth/drive"]
+
+# Carga tus credenciales (asegúrate de que el nombre coincida con tu archivo .json)
+creds = ServiceAccountCredentials.from_json_keyfile_name('credenciales.json', scope)
+client = gspread.authorize(creds)
+
+# 2. Conectar con tu hoja de cálculo
+# IMPORTANTE: Cambia "Mi Registro de Horas" por el nombre exacto de tu Google Sheet
+NOMBRE_HOJA = "Mi Registro de Horas" 
+sheet = client.open(NOMBRE_HOJA).sheet1
+
+@app.route('/')
+def index():
+    # Carga el formulario visual
+    return render_template('index.html')
+
+@app.route('/registrar', methods=['POST'])
+def registrar():
+    # Recogemos los datos que el trabajador escribió en el formulario
+    fecha = request.form['fecha']
+    nombre = request.form['nombre']
+    horas = request.form['horas']
+    trabajo = request.form['trabajo']
+
+    # Añadimos una fila nueva al final del Excel de Google
+    sheet.append_row([fecha, nombre, horas, trabajo])
+
+    return "<h1>¡Registro guardado!</h1><p>Ya puedes cerrar esta ventana.</p>"
+
+if __name__ == '__main__':
+    # Ejecuta el servidor en tu red local
+    app.run(debug=True)

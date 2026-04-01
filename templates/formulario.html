@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registro de Horas</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 20px; background-color: #f4f4f4; }
+        form { background: white; padding: 20px; border-radius: 8px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
+        label { font-weight: bold; display: block; margin-top: 10px; }
+        input, textarea { width: 100%; padding: 10px; margin-top: 5px; border: 1px solid #ccc; border-radius: 4px; box-sizing: border-box; }
+        button { width: 100%; padding: 15px; background-color: #28a745; color: white; border: none; border-radius: 4px; cursor: pointer; margin-top: 20px; font-size: 16px; }
+        button:hover { background-color: #218838; }
+    </style>
+</head>
+<body>
+    <h2>Registrar Jornada</h2>
+    <form action="/registrar" method="POST">
+        <label>Nombre del Trabajador:</label>
+        <input type="text" name="nombre" placeholder="Tu nombre" required>
+
+        <label>Fecha:</label>
+        <input type="date" name="fecha" required>
+
+        <label>Horas Trabajadas:</label>
+        <input type="number" step="0.5" name="horas" placeholder="Ej: 8" required>
+
+        <label>Descripción del Trabajo:</label>
+        <textarea name="trabajo" rows="3" placeholder="¿Qué has hecho hoy?" required></textarea>
+
+        <label>Cliente:</label>
+        <input type="text" name="cliente" placeholder="Nombre del cliente o empresa" required>
+
+        <button type="submit">Guardar en Excel</button>
+    </form>
+</body>
+</html>

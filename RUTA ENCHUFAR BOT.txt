@@ -1,0 +1,13 @@
+El "Cerebro" (Python)
+En la terminal 1 escribe:
+python servidor_final.py
+
+Sabrás que está bien si dice: Running on http://127.0.0.1:4321
+
+2. La "Antena" (Ngrok)
+Abre una nueva terminal (dale al botón + en VS Code).
+
+Escribe:
+./ngrok http 4321
+
+Tu link para compartir es el que sale en la línea de Forwarding (el que empieza por https://).
